@@ -75,6 +75,29 @@ contract Escrow {
         }
     }
     
+    
+    //withdraw money if other party is taking too much time or any other reason
+    function withdraw_by_payer() public{
+        require( 
+            activated_by_payer &&
+            contract_activated == false && 
+            msg.sender == payer);
+        activated_by_payer = true;
+        uint amount_payable_by_payer = amount_payable+arbitration_fee;
+        payer.transfer(amount_payable_by_payer);
+    }
+    
+    //withdraw money if other party is taking too much time or any other reason
+    function withdraw_by_payee() public{
+        require( 
+            activated_by_payee &&
+            contract_activated == false && 
+            msg.sender == payer);
+        activated_by_payee = true;
+        payer.transfer(arbitration_fee);
+    }
+    
+    
     //called by payee if transaction occured successfully
     function settle() public {
         require(msg.sender == payer);
