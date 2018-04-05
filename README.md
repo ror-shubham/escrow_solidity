@@ -14,3 +14,7 @@ Basic Escrow contract
 7. If Alice doesn't raise dispute in `time_to_raise_dispute`, Bob can call `force_settle` to settle the dispute, and payments are made same as when settled by Alice.
 8. If Alice raise dispute in given time, the Arbitrator decides whom to send the money. The arbitration fee of the loosing party in dispute is confisticated and sent to arbitrator. The winner gets the money and his arbitration fee.
  
+ 
+### Potential Problems
+ - The arbitrator has no incentive to act honestly
+ - The parties need to send the proof of their case using other channels(maybe email, or upload on website hosting front-end)
